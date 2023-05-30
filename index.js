@@ -292,7 +292,7 @@ console.log('Deep equal:')
 console.log(deepEqual(obj1, obj2));
 
 // Бонус Задание 2 – Развернуть строку в обратном направлении при помощи методов массивов:
-const reverseStr = (str) => str.split("").reverse().join('');
+const reverseStr = str => str.split("").reverse().join('');
 console.log('-------------------');
 console.log('Reverse string:')
 console.log(reverseStr('abcdef'));
