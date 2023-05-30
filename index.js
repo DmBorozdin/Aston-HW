@@ -182,3 +182,117 @@ const cloneDeep = require('lodash.clonedeep');
     console.log(newCounter)
     console.log(counter === newCounter);
 }
+
+// Задание 3 – Создать функцию makeCounter всеми описанными и возможными способами;
+// function declaration
+{
+    function makeCounter() {
+        let count = 0;
+        return function() {
+            return count++;
+        };
+    }
+
+    const counter = makeCounter();
+    console.log('-------------------');
+    console.log('function declaration:')
+    console.log(counter());
+    console.log(counter());
+}
+
+// function expression
+{
+    const makeCounter = function() {
+        let count = 0;
+        return function() {
+            return count++;
+        };
+    }
+
+    const counter = makeCounter();
+    console.log('-------------------');
+    console.log('function expression:')
+    console.log(counter());
+    console.log(counter());
+}
+
+// arrow function
+{
+    const makeCounter = () => {
+        let count = 0;
+        return () => count++;
+    };
+
+    const counter = makeCounter();
+    console.log('-------------------');
+    console.log('arrow function:')
+    console.log(counter());
+    console.log(counter());
+    console.log(counter());
+}
+
+// named function expressions
+{
+    const makeCounter = function makeCounterInnerRef() {
+        let count = 0;
+        return function() {
+            return count++;
+        };
+    }
+
+    const counter = makeCounter();
+    console.log('-------------------');
+    console.log('named function expressions:')
+    console.log(counter());
+    console.log(counter());
+}
+
+// Бонус Задание 1 – Написать функцию глубокого сравнения двух объектов:
+const deepEqual = (a, b) => {
+    if (a === b) {
+      return true;
+    }
+    if (a === null || b === null || typeof a !== 'object' || typeof b !== 'object') {
+      return false;
+    }
+    const aKeys = Object.keys(a);
+    const bKeys = Object.keys(b);
+    if (aKeys.length !== bKeys.length) {
+      return false;
+    }
+    for (let i = 0; i < aKeys.length; i += 1) {
+      const key = aKeys[i];
+      if (!bKeys.includes(key) || !deepEqual(a[key], b[key])) {
+        return false;
+      }
+    }
+    return true;
+};
+
+const first = {a: 3, b: 123, c: {d: 123}};   
+const second = { b: 123, c: {d: 123}, a: 3}; 
+console.log('-------------------');
+console.log('Deep equal:')
+console.log(deepEqual(first, second));
+const obj1 = { 
+    here: { 
+        is: "on", 
+        other: "3" 
+    }, 
+    object: 'Z'
+};
+const obj2 = {
+    here: { 
+        is: "on", 
+        other: "2"
+    }, 
+    object: 'Z' 
+};
+console.log('Deep equal:')
+console.log(deepEqual(obj1, obj2));
+
+// Бонус Задание 2 – Развернуть строку в обратном направлении при помощи методов массивов:
+const reverseStr = (str) => str.split("").reverse().join('');
+console.log('-------------------');
+console.log('Reverse string:')
+console.log(reverseStr('abcdef'));
